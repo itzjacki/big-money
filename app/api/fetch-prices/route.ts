@@ -30,7 +30,7 @@ export async function POST(request: Request) {
 
   const exchangeRateData = await exchangeRateResponse.json();
   const exchangeRate = parseCurrencyRateNOK(exchangeRateData.rates.NOK);
-  console.debug("Fetched exchange rate successfully: ", exchangeRate);
+  console.log("Fetched exchange rate successfully: ", exchangeRate);
 
   const products =
     (await sql`select id, pricecharting_slug from pokemon_products`) as Product[];
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
     const timestamp = new Date().toISOString();
     const priceNOK = (priceUSD * exchangeRate).toFixed(2);
 
-    console.debug("Inserting: ", product.id, timestamp, priceNOK);
+    console.log("Inserting: ", product.id, timestamp, priceNOK);
     await sql`insert into price_points (product_id, collected_at, price_nok) values (${product.id}, ${timestamp}, ${priceNOK})`;
 
     await new Promise((resolve) => setTimeout(resolve, 1000)); // sleep 1000ms to not spam page
