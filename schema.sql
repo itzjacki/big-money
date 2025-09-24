@@ -20,7 +20,10 @@ insert into pokemon_products (product_set, product_name, pricecharting_slug) val
   ('Lost Origin', 'Booster Bundle', '/game/pokemon-lost-origin/booster-bundle'),
   ('Paldean Fates', 'Charizard Special Tin', '/game/pokemon-paldean-fates/sealed-charizard-ex-tin'),
   ('Black Bolt', 'Booster Bundle', '/game/pokemon-black-bolt/booster-bundle'),
-  ('White Flare', 'Booster Bundle', '/game/pokemon-white-flare/booster-bundle');
+  ('White Flare', 'Booster Bundle', '/game/pokemon-white-flare/booster-bundle'),
+  ('Mega Evolution', 'Elite Trainer Box (Lucario)', '/game/pokemon-mega-evolution/elite-trainer-box-mega-lucario'),
+  ('Mega Evolution', 'Elite Trainer Box (Gardevoir)', '/game/pokemon-mega-evolution/elite-trainer-box-mega-gardevoir');
+
 
 create table pokemon_purchases (
   id serial primary key,
@@ -33,3 +36,11 @@ create table pokemon_purchases (
 );
 
 comment on column pokemon_purchases.unit_price is 'price in nok';
+
+create table price_points (
+  product_id integer not null references pokemon_products(id),
+  collected_at timestamptz not null,
+  price_nok decimal(10, 2) not null,
+
+  primary key (product_id, collected_at);
+);
