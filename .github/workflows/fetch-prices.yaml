@@ -1,0 +1,17 @@
+name: Fetch prices daily
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # 02:00Z daily
+
+jobs:
+  call_api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make API Request
+        env:
+          FETCH_PRICES_KEY: ${{ secrets.FETCH_PRICES_KEY }}
+        run: |
+          curl -X GET \
+          -H "fetch-prices-key: $FETCH_PRICES_KEY" \
+          https://big-money-rho.vercel.app/api/fetch-prices
