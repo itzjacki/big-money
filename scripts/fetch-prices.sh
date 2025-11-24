@@ -1,5 +1,3 @@
-#! /usr/bin/bash
-
 response_code=$(curl -s -o /dev/null -w "%{http_code}" \
   -X POST \
   -H "fetch-prices-key: $FETCH_PRICES_KEY" \
