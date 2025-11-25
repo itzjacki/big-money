@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: bash
         working-directory: ./scripts
     steps:
       - name: Make API Request
