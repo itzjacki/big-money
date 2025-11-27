@@ -7,11 +7,9 @@ on:
 jobs:
   call_api:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./scripts
     steps:
+      - uses: actions/checkout@v4
       - name: Make API Request
         env:
           FETCH_PRICES_KEY: ${{ secrets.FETCH_PRICES_KEY }}
-        run: ./fetch_prices.sh
+        run: ./scripts/fetch_prices.sh
