@@ -12,4 +12,4 @@ jobs:
       - name: Make API Request
         env:
           FETCH_PRICES_KEY: ${{ secrets.FETCH_PRICES_KEY }}
-        run: ./scripts/fetch_prices.sh
+        run: ./scripts/fetch-prices.sh
